@@ -3,8 +3,8 @@
  <h3>Discussions</h3>
    <br />
   <div class="list-group">
-  	<div class="col-sm-1">
   <% @discussions.each do |discussion| %>
+  <div class="col-sm-1">
   <%= link_to discussion.user, discussion_path(discussion)%>
 	</div>
 	<div class="col-md-4">
@@ -27,8 +27,8 @@
  <h3>Tasks</h3>
    <br />
   <div class="list-group">
-  	<div class="col-sm-1">
   <% @tasks.each do |task| %>
+  <div class="col-sm-1">
   <%= link_to User.find(task.user_id).name, task_path(task)%>
 	</div>
 	<div class="col-md-4">
