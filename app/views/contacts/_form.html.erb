@@ -1,0 +1,65 @@
+<%= form_for(@contact) do |f| %>
+  <% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+      <% @contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+  <div class="col-md-3">
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+   <div class="field">
+    <%= f.label :firstName, "First Name" %><br>
+    <%= f.text_field :firstName %>
+  </div>
+   <div class="field">
+    <%= f.label :lastName,"Last Name" %><br>
+    <%= f.text_field :lastName %>
+  </div>
+</div>
+  <div class="col-md-3">
+  <div class="field">
+    <%= f.label :company %><br>
+    <%= f.text_field :company %>
+  </div>
+  <div class="field">
+    <%= f.label :lastContact,"Last Contact" %><br>
+    <%= f.text_field :lastContact %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="field">
+    <%= f.label :opened %><br>
+    <%= f.check_box :opened %>
+  </div>
+  <div class="field">
+    <%= f.label :response %><br>
+    <%= f.check_box :response %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br>
+    <%= f.text_field :notes %>
+  </div>
+  <div class="field">
+    <%= f.label :track %><br>
+    <%= f.number_field :track %>
+  </div>
+</div>
+</div>
+<div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

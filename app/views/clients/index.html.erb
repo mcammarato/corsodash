@@ -1,0 +1,52 @@
+<h1>Clients</h1>
+<hr>
+
+<table  id="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>About</th>
+      <th>Email</th>
+      <th>Number</th> 
+      <th>Notes</th>
+      <th>Active</th>
+      <th>Lastcontact</th>
+      <th>#</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clients.each do |client| %>
+      <tr>
+        <td><%= link_to client.name, client %></td>
+        <td><%= client.about %></td>
+        <td><%= client.email %></td>
+        <td><%= client.number %></td>
+        <td><%= client.notes %></td>
+        <td><%= client.active %></td>
+        <td><%= client.lastContact %></td>
+        <td><%= link_to 'Show', client %></td>
+        <td><%= link_to 'Edit', edit_client_path(client) %></td>
+        <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<script type="text/javascript">
+
+    $('#table').dataTable();
+    
+
+    $('#table')
+      .removeClass( 'display' )
+      .addClass('table table-striped table-bordered');
+    
+    
+</script>
+
+<%= link_to 'New Client', new_client_path %>

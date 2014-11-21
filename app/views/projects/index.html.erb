@@ -1,0 +1,44 @@
+<h1>Projects</h1>
+<hr>
+<table id="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Task</th>
+      <th>Specs</th>
+      <th>Deadline</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <td><%= project.task %></td>
+        <td><%= project.specs %></td>
+        <td><%= project.deadline %></td>
+        <td><%= link_to 'Show', project %></td>
+        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<script type="text/javascript">
+
+$(document).ready( function () {
+    $('#table').DataTable();
+} );
+$('#table')
+    .removeClass( 'display' )
+    .addClass('table table-striped table-bordered');
+
+</script>
+
+<%= link_to 'New Project', new_project_path %>

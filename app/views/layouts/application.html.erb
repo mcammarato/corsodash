@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+     <!-- DataTables CSS -->
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.css">
+
+    
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+</head>
+
+<!--Navbar -->
+
+<nav class="navbar-custom" class="navbar navbar-inverse"  role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"><%= image_tag "blacklogo.png", :class => "navbarlogo"  %></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="/clients" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clients <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/clients/new ">Add New Client</a></li>
+            <li><a href="/clients">See All Clients</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="/contacts" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contacts <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/contacts/new ">Add New Contact</a></li>
+            <li><a href="/contacts">See All Contacts</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="/tasks" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tasks <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/tasks/new ">Add New Task</a></li>
+            <li><a href="/tasks">See All Tasks</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="/projects" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/projects/new ">Add New Project</a></li>
+            <li><a href="/projects">See All Projects</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="/discussions" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Discussions <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/discussions/new ">Add New Discussion</a></li>
+            <li><a href="/discussions">See All Discussions</a></li>
+          </ul>
+        </li>
+      </ul>
+       <div class="navbar-right">
+            <div class="btn-group">
+                <% if !user_signed_in? %>
+                <button  style="margin-top: 7px;" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Login <span class="caret"></span>
+                </button>
+                <%else%>
+                <button style="margin-top: 7px;" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><%=current_user.email%><span class="caret"></span>
+                </button>
+                <%end%>
+                <div class="dropdown-menu" >
+                    <div class="col-sm-12">
+                        <% if !user_signed_in? %>
+                        <div class="col-sm-12">
+                            Login
+                        </div>
+                        <div class="col-sm-12">
+                            <input type="text" placeholder="Email" onclick="return false;" class="form-control input-sm" id="inputError" />
+                        </div>
+                        <% else %>
+                        <div class="col-sm-12">
+                          <%=  link_to  "Change Password", edit_user_registration_path, :class =>  "navbar-link" %>
+                        </div>
+                        <% end %>
+                        <br/>
+                        <% if !user_signed_in? %>
+                        <div class="col-sm-12">
+                            <input type="password" placeholder="Password" class="form-control input-sm" name="password" id="Password1" />
+                        </div>
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-primary btn-sm">Sign in</button>
+                        </div>
+                        <% else %>
+                        <div class="col-sm-12">
+                        <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "navbar-link") %>
+                      </div>
+                      <% end %>
+                </div>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!--Navbar -->
+
+<body>  
+
+
+<div class="container">
+  <%= yield %>
+</div>
+
+
+<script type="text/javascript">
+
+  $(function () {
+            $('.dropdown-menu input').click(function (event) {
+                event.stopPropagation();
+            });
+        });
+
+</script>
+
+</body>
+</html>

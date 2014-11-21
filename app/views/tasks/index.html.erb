@@ -1,0 +1,48 @@
+<h1>Tasks</h1>
+<hr>
+<table id="table">
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Deadline</th>
+      <th>Client</th>
+      <th>Project</th>
+      <th>Completed</th>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.task %></td>
+        <td><%= task.deadline %></td>
+        <td><%= link_to Client.find(task.client_id).name, client_path(task.client_id) %></td>
+        <td><%= link_to Project.find(task.project_id).name, project_path(task.project_id) %></td>
+        <td><%= task.completed %></td>
+        <td><%= task.date %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<script type="text/javascript">
+
+$(document).ready( function () {
+    $('#table').DataTable();
+} );
+$('#table')
+    .removeClass( 'display' )
+    .addClass('table table-striped table-bordered');
+
+</script>
+
+<%= link_to 'New Task', new_task_path %>
