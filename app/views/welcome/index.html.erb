@@ -40,7 +40,7 @@
   		<% @tasks.each do |task| %>
   		<div class="row">
   		<div class="col-sm-1">
-  			<%= link_to User.find(task.user_id).name, task_path(task), :class=>"list-user" %>
+  			<%= link_to User.find(task.user_id).email, task_path(task), :class=>"list-user" %>
 		</div>
 		<div class="col-md-4">
   			<%= link_to task.task, task, :class=>"list-group-item"%>
