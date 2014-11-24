@@ -23,13 +23,14 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id=current_user.id
     @task.save
     respond_with(@task)
   end
 
   def update
+    @task.user_id=current_user.id
     @task.update(task_params)
-    @task.user_id=1
     respond_with(@task)
   end
 
