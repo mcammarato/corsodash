@@ -39,8 +39,12 @@
   	<div class="list-group">
   		<% @tasks.each do |task| %>
   		<div class="row">
-  		<div class="col-sm-1">
-  			<%= link_to User.find(task.user_id).name, task_path(task), :class=>"list-user" %>
+  		
+		<div class="col-md-4">
+  			<%= link_to task.task, task, :class=>"list-group-item"%>
+		</div>
+		<div class="col-md-4">
+			<%= task.date.strftime("%d-%m-%Y") %>
 		</div>
 	</div>
 		<% end %>
