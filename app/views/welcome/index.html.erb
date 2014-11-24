@@ -39,7 +39,9 @@
   	<div class="list-group">
   		<% @tasks.each do |task| %>
   		<div class="row">
-  		
+  		<div class="col-sm-1">
+  			<%= link_to User.find(1).name, task_path(task), :class=>"list-user" %>
+		</div>
 		<div class="col-md-4">
   			<%= link_to task.task, task, :class=>"list-group-item"%>
 		</div>
