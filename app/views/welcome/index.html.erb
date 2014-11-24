@@ -1,2 +1,116 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<!-- Discussions -->
+
+<div class="row">
+<div class="col-md-9">
+<div class="container">
+ 	<h3>Discussions</h3>
+  	 <br />
+  	<div class="list-group">
+  		<% @discussions.each do |discussion| %>
+  		<div class="row">
+  		<div class="col-sm-1" class="listuser">
+  			<%= link_to discussion.user, discussion_path(discussion), :class=>"list-user" %>
+		</div>
+		<div class="col-md-4">
+  			<%= link_to discussion.message, discussion, :class=>"list-group-item"%>
+		</div>
+		<div class="col-md-4">
+			<%= discussion.date.strftime("%d-%m-%Y") %>
+		</div>
+	</div>
+		<% end %>
+	</div>
+
+
+
+	<br />
+	<%= link_to 'New Discussion', new_discussion_path %>
+	
+	</div>
+
+
+	<hr>
+
+<!--Tasks -->
+
+<div class="container">
+ 	<h3>Tasks</h3>
+   	<br />
+  	<div class="list-group">
+  		<% @tasks.each do |task| %>
+  		<div class="row">
+  		<div class="col-sm-1">
+  			<%= link_to User.find(task.user_id).name, task_path(task), :class=>"list-user" %>
+		</div>
+		<div class="col-md-4">
+  			<%= link_to task.task, task, :class=>"list-group-item"%>
+		</div>
+		<div class="col-md-4">
+			<%= task.date.strftime("%d-%m-%Y") %>
+		</div>
+	</div>
+		<% end %>
+	</div>
+	<br>
+
+	<%= link_to 'New Task', new_task_path %>
+</div>
+</div>
+
+<div class="col-md-3">
+	<a class="twitter-timeline" href="https://twitter.com/CorsoSystems" data-widget-id="522870128069730305">Tweets by @CorsoSystems</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+</div>
+</div>
+
+<!--Icon Links -->
+<hr>
+<div class="row">
+<div class="container">
+
+
+	<div class="col-md-2">
+		<div style="text-align: center;">
+		<a href="/clients"><h4>Clients</h4></a>
+			<a href="/clients"><img src="/assets/client.svg" width="70%" class="frontimage"></a></div>
+		</div>
+		<div class="col-md-2">
+		<div style="text-align: center;">
+		<a href="/clients"><h4>Contacts</h4></a>
+			<a href="/tasks"><img class="frontimage" stlye="margin: left;" src="/assets/contact.svg" width="70%"></a></div>
+		</div>
+		
+		<div class="col-md-2">
+		<div style="text-align: center;">
+		<a href="/clients"><h4>Tasks</h4></a>
+			<a href="/tasks"><img class="frontimage" stlye="margin: left;" src="/assets/task.svg" width="70%"></a></div>
+		</div>
+		<div class="col-md-2">
+		<div style="text-align: center;">
+		<a href="/clients"><h4>Projects</h4>
+			<a href="/projects"><img class="frontimageproject" stlye="margin: left;" src="/assets/project.svg" width="55%"></img></div>
+		</div>
+		<div class="col-md-2">
+		<div style="text-align: center;">
+		<a href="/discussions"><h4>Discussions</h4>
+			<a href="/discussions"><img class="frontimage" stlye="margin: left;" src="/assets/discussion.svg" width="70%"></img></div>
+		</div>
+</div>
+</div>
+
+
+
+<!-- Javascript -->
+
+<script type="text/javascript">
+
+$(document).ready( function () {
+    $('#table').DataTable();
+} );
+$('#table')
+    .removeClass( 'display' )
+    .addClass('table table-striped table-bordered');
+
+</script>
+<!-- Javascript -->
