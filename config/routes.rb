@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get 'welcome/index'
+  get 'tasks/index'
 
   root 'welcome#index'
   
