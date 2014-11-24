@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
+	before_filter :authenticate_user!
 	def index
-		before_filter :authenticate_user!
 		@tasks = Task.all
 		@discussions = Discussion.all
-    		render :layout => "homelayout"
+    		#render :layout => "homelayout"
 	end
 	
 end
